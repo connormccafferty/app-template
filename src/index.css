@@ -1,0 +1,33 @@
+@font-face {
+  font-family: 'Akkurat Pro';
+  src: url('/assets/lineto-akkurat-pro-regular.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 400;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  font-family: 'Akkurat Pro';
+  padding: 10px;
+}
+
+h1 {
+  font-size: 48px;
+  line-height: 48px;
+  font-weight: 400;
+}
+
+h2 {
+  font-size: 40px;
+  line-height: 48px;
+  font-weight: 400;
+}
+
+h3 {
+  font-size: 32px;
+  line-height: 40px;
+  font-weight: 400;
+}

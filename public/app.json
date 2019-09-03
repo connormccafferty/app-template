@@ -1,9 +1,9 @@
 {
     "startup_app": {
         "name": "OpenfinPOC",
-        "url": "http://localhost:5555/index.html",
+        "url": "http://localhost:3000",
         "uuid": "OpenfinPOC",
-        "applicationIcon": "http://localhost:5555/favicon.ico",
+        "applicationIcon": "http://localhost:3000/favicon.ico",
         "autoShow": true,
         "saveWindowState": true
     },
@@ -14,7 +14,7 @@
     "shortcut": {
         "company": "OpenFin",
         "description": "Openfin POC",
-        "icon": "http://localhost:5555/favicon.ico",
+        "icon": "http://localhost:3000/favicon.ico",
         "name": "Openfin POC"
     }
 }
