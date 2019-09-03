@@ -17,7 +17,7 @@ const App: React.FC = () => {
       <h1>Hello, world!</h1>
       <p>This is a template for an OpenFin application.</p>
         <p id="version-number-container">
-            Current version: <span id="of-version">{version}</span>
+            Current version: <span id="of-version">{version || 'The fin API is not available - you are probably running in a browser.'}</span>
         </p>
     </div>
   )

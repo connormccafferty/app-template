@@ -5,13 +5,13 @@ import './index.css';
 
 import App from './App';
 
-const init = async () => {
-  openDevTools()
-}
+// const init = async () => {}
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
-init();
+if (typeof fin !== 'undefined') {
+  openDevTools();
+}
 
 function openDevTools() {
   const { identity } = fin.Window.getCurrentSync();
