@@ -17,6 +17,9 @@ async function init() {
     const ofVersion = document.querySelector('#of-version');
     ofVersion.innerText = await fin.System.getVersion();
 
+    openDevTools();
+    createChannel();
+    launchApp().then(() => console.log('React App is running')).catch(err => console.log(err));
 
     // only launch new windows from the main window.
     if (win.identity.name === app.identity.uuid) {
@@ -34,4 +37,28 @@ async function init() {
             });
         })
     }
+}
+
+async function createChannel() {
+    const channel = await fin.InterApplicationBus.Channel.create('test-channel');
+    console.log('Channel created');
+    channel.setDefaultAction((action, payload, identity) => {
+        console.log(`Someone sent a message`, { action, payload, identity });
+        channel.send(identity, action, payload);
+    });
+    channel.onConnection(identity => console.log(`Someone connected`, identity));
+}
+
+async function launchApp() {
+    return fin.Application.start({
+        name: 'react-app',
+        uuid: 'react-app',
+        url: 'http://localhost:3000',
+        autoShow: true
+    });
+}
+
+function openDevTools() {
+    const { identity } = fin.Window.getCurrentSync();
+    fin.System.showDeveloperTools(identity);
 }
