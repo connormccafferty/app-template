@@ -1,0 +1,30 @@
+{
+  "offlineAccess": true,
+  "startup_app": {
+      "name": "child-app",
+      "url": "http://localhost:5555/index.html",
+      "uuid": "childapp",
+      "applicationIcon": "http://localhost:5555/favicon.ico",
+      "autoShow": true,
+      "saveWindowState": true,
+      "spellCheck": true,
+      "preloadScripts": [
+        { "url": "http://localhost:5555/js/preload.js" } 
+      ],
+      "experimental": {
+        "api": {
+          "fileDownloadApi": true
+        }
+      }
+  },
+  "runtime": {
+      "arguments": "",
+      "version": "stable"
+  },
+  "shortcut": {
+      "company": "child-app",
+      "description": "child-app",
+      "icon": "http://localhost:5555/favicon.ico",
+      "name": "child-app"
+  }
+}
