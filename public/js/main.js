@@ -21,6 +21,34 @@ async function init() {
                 chartType: "candle",
                 zoomSliderType: "candle"
             });
+
+            $("#grid").igGrid({
+                dataSource: data,
+                features: [
+                    {
+                        name: "Sorting",
+                        type: "local",
+                        mode: "multi",
+                        sortingDialogContainment: "window"
+                    },
+                    {
+                        name: "Filtering",
+                        type: "local",
+                        mode: "advanced",
+                        filterDialogContainment: "window"
+                    },
+                    {
+                        name: "Hiding"
+                    },
+                    {
+                        name: "ColumnMoving",
+                        columnMovingDialogContainment: "window"
+                    },
+                    {
+                        name: "Summaries"
+                    }
+                ]
+            });
         });
     });
 }
