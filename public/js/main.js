@@ -1,11 +1,11 @@
-// uncomment line below to register offline cache service worker 
+// uncomment line below to register offline cache service worker
 // navigator.serviceWorker.register('../serviceworker.js');
 
-if (typeof fin !== 'undefined') {
+if (typeof fin !== "undefined") {
     init();
 } else {
-    document.querySelector('#of-version').innerText =
-        'The fin API is not available - you are probably running in a browser.';
+    document.querySelector("#of-version").innerText =
+        "The fin API is not available - you are probably running in a browser.";
 }
 
 // once the DOM has loaded and the OpenFin API is ready
@@ -14,24 +14,32 @@ async function init() {
     const app = await fin.Application.getCurrent();
     const win = await fin.Window.getCurrent();
 
-    const ofVersion = document.querySelector('#of-version');
+    const ofVersion = document.querySelector("#of-version");
     ofVersion.innerText = await fin.System.getVersion();
 
+    const launchBtn = document.getElementById("launch");
 
-    // only launch new windows from the main window.
-    if (win.identity.name === app.identity.uuid) {
-        // subscribing to the run-requested events will allow us to react to secondary launches, clicking on the icon once the Application is running for example.
-        // for this app we will  launch a child window the first the user clicks on the desktop.
-        const createWindowBtn = document.querySelector('#create-window');
-        createWindowBtn.addEventListener('click', async (e) => {
-            e.preventDefault();
-            await fin.Window.create({
-                name: `child-${new Date(Date.now()).toTimeString().slice(0, 8)}`,
-                url: location.href,
-                defaultWidth: 320,
-                defaultHeight: 320,
-                autoShow: true
-            });
+    launchBtn.addEventListener("click", async (event) => {
+        await launchDeepLink();
+    });
+}
+
+async function launchDeepLink() {
+    const app = await fin.Application.wrap({
+        uuid: "OpenfinPOC1",
+    });
+    const url = "http://localhost:5555/app1.json";
+    let isRunning = await app.isRunning();
+
+    if (!isRunning) {
+        await fin.Application.startFromManifest(url);
+        await app.addListener("run-requested", console.log);
+    } else if (isRunning) {
+        let args = { foo: "bar" };
+        fin.Application.startFromManifest(url, {
+            userAppConfigArgs: args,
         })
+            .then(console.log)
+            .catch((err) => {});
     }
 }
