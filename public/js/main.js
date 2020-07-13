@@ -33,7 +33,6 @@ async function launchDeepLink() {
 
     if (!isRunning) {
         await fin.Application.startFromManifest(url);
-        await app.addListener("run-requested", console.log);
     } else if (isRunning) {
         let args = { foo: "bar" };
         fin.Application.startFromManifest(url, {

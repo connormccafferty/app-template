@@ -17,4 +17,10 @@
             <h1>App 1</h1>
         </div>
     </body>
+    <script>
+        (async () => {
+            const app = await fin.Application.getCurrent();
+            await app.addListener("run-requested", console.log);
+        })();
+    </script>
 </html>
